@@ -4,9 +4,11 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_support.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +25,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class SupportFragment : Fragment() {
+class SupportFragment : AppFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -37,12 +39,32 @@ class SupportFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
         */
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_support, container, false)
+        val view = inflater.inflate(R.layout.fragment_support, container, false)
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        showLoadingDialog()
+        MockService.getAllPetitions().doOnEach {
+            hideLoadingDialog()
+        }.subscribe {
+            val adapter = SupportFragmentRecyclerViewAdapter(
+                    fun (petitionDesc: String, petitionId: Int) {
+                        SinglePetitionActivity.startActivity(context!!, petitionId, petitionDesc)
+                    }
+            )
+            petitionRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            petitionRecycler.adapter = adapter
+            adapter.addAll(it)
+            adapter.notifyDataSetChanged()
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

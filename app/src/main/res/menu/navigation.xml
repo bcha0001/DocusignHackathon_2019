@@ -4,19 +4,19 @@
     <!--Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
     <item
         android:id="@+id/navigation_campsign"
-        android:icon="@drawable/ic_tent"
+        android:icon="@android:drawable/ic_menu_add"
         android:title="@string/title_campsign" />
 
     <!--<div>Icons made by <a href="https://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
     <item
         android:id="@+id/navigation_donate"
-        android:icon="@drawable/ic_cash"
+        android:icon="@android:drawable/ic_dialog_info"
         android:title="@string/title_donate" />
 
     <!--<div>Icons made by <a href="https://www.freepik.com/?__hstc=57440181.625461d5aeece3442c7d46a8c0130746.1560026740064.1560026740064.1560026740064.1&__hssc=57440181.10.1560026740065&__hsfp=1885817573" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>-->
     <item
         android:id="@+id/navigation_support"
-        android:icon="@drawable/ic_support"
+        android:icon="@android:drawable/ic_menu_myplaces"
         android:title="@string/title_support" />
 
 

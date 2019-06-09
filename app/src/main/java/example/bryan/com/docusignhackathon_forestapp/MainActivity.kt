@@ -1,14 +1,18 @@
 package example.bryan.com.docusignhackathon_forestapp
 
+import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import example.bryan.com.docusignhackathon_forestapp.LoginSignup.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), CampSignFragment.OnFragmentInteractionListener, DonateFragment.OnFragmentInteractionListener, SupportFragment.OnFragmentInteractionListener {
+class MainActivity : AppActivity(), CampSignFragment.OnFragmentInteractionListener, DonateFragment.OnFragmentInteractionListener, SupportFragment.OnFragmentInteractionListener {
+
     override fun onCampSignFragmentInteraction(uri: Uri) {
         Log.d("CampSign", uri.toString())
     }
@@ -54,5 +58,11 @@ class MainActivity : AppCompatActivity(), CampSignFragment.OnFragmentInteraction
         openFragment(CampSignFragment.newInstance())
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+    }
+
+    companion object {
+        fun startActivity(context: Context) {
+            context.startActivity(Intent(context, MainActivity::class.java))
+        }
     }
 }

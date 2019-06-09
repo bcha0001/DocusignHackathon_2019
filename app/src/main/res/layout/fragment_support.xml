@@ -8,18 +8,14 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <Button
-            android:id="@+id/supportButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Support!"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_height="match_parent"
+        android:background="@color/colorDarkGreen">
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/petitionRecycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp"/>
 
     </android.support.constraint.ConstraintLayout>
 

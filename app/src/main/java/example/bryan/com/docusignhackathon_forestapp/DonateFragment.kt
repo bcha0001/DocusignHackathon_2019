@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.fragment_camp_sign.*
+import kotlinx.android.synthetic.main.fragment_donate.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -23,7 +26,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  *
  */
-class DonateFragment : Fragment() {
+class DonateFragment : AppFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -43,6 +46,48 @@ class DonateFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_donate, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        ArrayAdapter.createFromResource(
+                context,
+                R.array.national_parks_array,
+                android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            donate_spinner.adapter = adapter
+        }
+
+        donateButton.setOnClickListener {
+            onDonateButtonClicked()
+        }
+    }
+
+    fun onDonateButtonClicked() {
+        if (!donationAmount.text.isNotBlank()) {
+            showToast("Sorry! We can't donate nothing!")
+            return
+        }
+        if (donationAmount.text.toString().toFloat().toInt() < 0) {
+            showToast("Sorry! We can't donate negative amounts!")
+            return
+        }
+        val userData = getUserData()
+        showLoadingDialog()
+        MockService.getDonationDocusign(
+                userData.first,
+                userData.second,
+                donate_spinner.selectedItem.toString(),
+                donationAmount.text.toString().toFloat()
+        ).doOnEach {
+            hideLoadingDialog()
+        }.subscribe {
+            DocuSignActivity.startActivity(context!!, it)
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
