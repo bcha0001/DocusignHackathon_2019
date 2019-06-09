@@ -45,6 +45,10 @@ class CampSignFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_camp_sign, container, false)
     }
 
+    fun setUpRequestBookingButton() {
+
+    }
+
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
         listener?.onCampSignFragmentInteraction(uri)

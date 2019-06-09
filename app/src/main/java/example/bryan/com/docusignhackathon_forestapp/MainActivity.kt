@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), CampSignFragment.OnFragmentInteraction
                 openFragment(SupportFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_notifications -> {
+            R.id.navigation_donate -> {
                 openFragment(DonateFragment.newInstance())
                 return@OnNavigationItemSelectedListener true
             }
@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity(), CampSignFragment.OnFragmentInteraction
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        openFragment(CampSignFragment.newInstance())
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
